@@ -1,0 +1,75 @@
+<%- include('includes/head.ejs') %>
+</head>
+<body class="home page page-template page-template-template-portfolio page-template-template-portfolio-php">
+	<%- include('includes/loader.ejs') %>
+<div id="page">
+	<div class="container">
+		<%- include('includes/navigation.ejs') %>
+		<!-- #masthead -->
+		<div id="content" class="site-content">
+			<div id="primary" class="content-area column two-thirds single-portfolio">
+				<main id="main" class="site-main">
+				
+				<article class="portfolio hentry">
+				<header class="entry-header">
+				<h1 class="entry-title">Terms and Conditions</h1>
+				</header>
+				<div class="entry-content">
+					<p>
+						This is Terms and Conditions.This is Terms and Conditions.
+					</p>
+					<p>
+						This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.
+					</p>
+					<blockquote>
+						<p>
+							This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.
+						</p>
+					</blockquote>
+					<p>
+						This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.This is Terms and Conditions.
+						This is Terms and Conditions.
+					</p>
+				</div>
+				</article>
+				
+				</main>
+				<!-- #main -->
+			</div>
+			<!-- #primary -->
+			
+			<div id="secondary" class="column third">
+				<div class="widget-area">
+					<aside class="widget">
+						<h4 class="widget-title">Upload project</h4>
+						<form class="wpcf7" method="POST" id="contactform" enctype="multipart/form-data" action="/project_add">
+							<div class="form">
+								<p><input type="text" name="project_name" placeholder="Project Name *"></p>
+								<p><input type="text" name="category" placeholder="Project category *"></p>
+								<p>
+									<input type="radio" id="free" name="payment_type" value="free" onclick="EnableDisableTextBox()"><label for="free">Free</label>
+									<input type="radio" id="premium" name="payment_type" value="premium" style="padding-left: 2rem;" onclick="EnableDisableTextBox()"><label for="premium">Premium</label>
+								</p>
+								<p><input type="number" name="price" placeholder="Price in USD" id="price" step="0.01" value="0.00"></p>
+								<p><label for="Image">Image</label><input type="file" name="projectImg"></p>
+								<p><label for="project_file">Project File</label><input type="file" name="projectFile"></p>
+								<p><textarea name="tech_description" rows="1" placeholder="Technical description"></textarea></p>
+								<p><textarea name="description" rows="3" placeholder="Message *"></textarea></p>
+								<!-- <input type="submit" id="submit" class="clearfix btn" value="Upload"> -->
+								<input type="submit" value="Upload">  
+							</div>
+						</form>
+					</aside>
+				</div>
+			</div>
+		</div>
+		<!-- #content -->
+	</div>
+	<!-- .container -->
+	<%- include('includes/footer.ejs') %>
+<!-- #page -->
+<%- include('includes/script.ejs') %>
+<script src='js/validate.js'></script>
+<script src="../js/endisablebox.js"></script>
+</body>
+</html>

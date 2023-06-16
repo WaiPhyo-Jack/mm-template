@@ -1,0 +1,36 @@
+<%- include('includes/head.ejs') %>
+</head>
+<body class="home page page-template page-template-template-portfolio page-template-template-portfolio-php">
+	<%- include('includes/loader.ejs') %>
+<div id="page">
+	<div class="container">
+		<%- include('includes/navigation.ejs') %>
+		<!-- #masthead -->
+		<div id="content" class="site-content">
+			<div class="loginform">
+				<form class="wpcf7" method="POST" action="/login" id="contactform" >
+					<div class="form">
+						<img src="Photo/login.jpg" class="loginlogo">
+					</br>
+						<label>Email</label>
+						<p><input type="text" name="email" placeholder=""></p>
+						<label>Password</label>
+						<p><input type="password" name="password" placeholder=""></p>
+					</br>
+						<input type="submit" id="submit" class="clearfix btn" value="Login">
+						<a href="" style="align-items: center;">Forget password?</a>
+					</div>
+				</form>
+				<hr>
+					<a>Don't have an account? </a><a href="/signup" style="font-style: unset; color: blue;" >Sign Up</a>
+				<hr>
+			</div>
+		</div>
+		<!-- #content -->
+	</div>
+	<!-- .container -->
+	<%- include('includes/footer.ejs') %>
+<!-- #page -->
+<%- include('includes/script.ejs') %>
+</body>
+</html>

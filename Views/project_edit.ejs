@@ -1,0 +1,64 @@
+<%- include('includes/head.ejs') %>
+</head>
+<body class="single single-product woocommerce woocommerce-page">
+	<%- include('includes/loader.ejs') %>
+<div id="page">
+	<div class="container">
+		<%- include('includes/navigation.ejs') %>
+		<!-- #masthead -->
+		<div id="content" class="site-content">
+			<div id="primary" class="content-area column full">
+				<main id="main" class="site-main" role="main">
+				<div id="container">
+					<div id="content" role="main">
+						<nav class="woocommerce-breadcrumb" itemprop="breadcrumb"><a href="#">Home</a> / <a href="#"><%= project.category %> </a> / <%= project.project_name %></nav>
+						<h1 itemprop="name" class="product_title entry-title"><%= project.project_name %></h1>
+						<h4 itemprop="name" class="product_title">Project ID :<%= project._id %></h4>
+						<div itemscope itemtype="http://schema.org/Product" class="product">
+							<div class="images">
+								<a href="https://freewebsitetemplates.com/preview/<%= project.project_name %>/index.html" itemprop="image" class="woocommerce-main-image zoom" title="" data-rel="prettyPhoto">								
+								<img src="../Photo/projectPhoto/<%= project.projectImg[0].fileName %>" alt=""></img></a>
+							</div>
+							<div class="summary entry-summary">
+								<div class="widget-area">
+									<aside class="widget">
+										<h2 itemprop="name" class="product_title entry-title">Edit Project</h2>
+										<form class="wpcf7" method="POST" id="contactform" enctype="multipart/form-data">
+											<div class="form" >
+												<input type="hidden" name="project_id" value="<%= project._id %>">
+												<p><input type="text" name="project_name" value="<%= project.project_name %>"></p>
+												<p><input type="text" name="category" value="<%= project.category %>"></p>
+												<p>
+													<input type="radio" id="free" name="payment_type" value="free" onclick="EnableDisableTextBox()"><label for="free">Free</label>
+													<input type="radio" id="premium" name="payment_type" value="premium" style="padding-left: 2rem;" onclick="EnableDisableTextBox()"><label for="premium">Premium</label>
+												</p>
+												<p><input type="number" name="price" value="<%= project.price %>" id="price" step="0.01"></p>
+												<p><label for="Image">Image</label></br><input type="file" name="projectImg" value="<%= project.projectImg %>"></p>
+												<p><label for="project_file">Project File</label></br><input type="file" name="projectFile" value="<%= project.projectFile %>"></p>
+												<p><textarea name="tech_description" rows="1" ><%= project.tech_description %></textarea></p>
+												<p><textarea name="description" rows="3" ><%= project.description %></textarea></p>
+												<!-- <input type="submit" id="submit" class="clearfix btn" value="Upload"> -->
+												<input type="submit" value="Submit">
+											</div>
+										</form>
+									</aside>
+								</div>
+							</div>
+							<!-- .summary -->
+						</div>
+					</div>
+				</div>
+				</main>
+				<!-- #main -->
+			</div>
+			<!-- #primary -->
+		</div>
+		<!-- #content -->
+	</div>
+	<!-- .container -->
+	<%- include('includes/footer.ejs') %>
+<!-- #page -->
+<%- include('includes/script.ejs') %>
+<script src="../js/endisablebox.js"></script>
+</body>
+</html>
