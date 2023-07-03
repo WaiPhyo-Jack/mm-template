@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.get("/", projectcontrol.getindex);
 
+router.get("/:page", projectcontrol.getSinglePage);
+
 router.get("/TermsandConditions", projectcontrol.getTerms);
 
 router.get("/about", projectcontrol.getAbout);

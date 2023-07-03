@@ -14,7 +14,7 @@ export interface RequestData {
     id: ObjectId;
     project_name: string;
     category: string;
-    price: string;
+    price: number;
     projectImg: Array<ProjectimgData>;
     projectFile: Array<ProjectfileData>;
     description: string;
@@ -47,24 +47,29 @@ export interface RequestData {
     fileSize: string;
   };
 
-  const getindex  = async (req: Request, res: Response): Promise<void> => {
+  const getindex = async (req: Request, res: Response): Promise<void> => {
     try {
+      // const perpage: number = 3;
+      // const page: number = Number(req.params.page) || 1;
+      // const count = Project.length;
       Project.find()
-      .then(projects =>{
-        res.render('index', {
-          projs: projects,
-          pageTitle: 'Home',
-          path: '/',
-          isAuthenticate: req.session.user?.login,
-          userid : req.session.user?._id,
-          isadmin : req.session.user?.isadmin
+        // .skip((perpage * page) - perpage)
+        // .limit(perpage)
+        .then((projects) => {
+          res.render('index', {
+            projs: projects,
+            pageTitle: 'Home',
+            path: '/',
+            isAuthenticate: req.session.user?.login,
+            userid: req.session.user?._id,
+            isadmin: req.session.user?.isadmin,
+            // pages: Math.ceil(count / perpage)
+          });
         });
-      })
-      
     } catch (error) {
       res.status(400).json({
         status: "FAILED",
-        message: "An error occurred while getting index!",
+        message: "An error occurred while getting the index!",
       });
     }
   };
@@ -516,6 +521,41 @@ export interface RequestData {
     }
   };
 
+  
+const getSinglePage = async (req: Request, res: Response): Promise<void> => {
+  try {
+    let currentPage: number = parseInt(req.params.page);
+    if (isNaN(currentPage) || currentPage < 1) {
+      currentPage = 1;
+    }
+    const itemsPerPage: number = 3;
+
+    const projects: RequestData[] = await Project.find();
+    const filteredProjects: RequestData[] = projects.filter((project: RequestData) => project.price == 0);
+
+    const startIdx: number = (currentPage - 1) * itemsPerPage;
+    const endIdx: number = startIdx + itemsPerPage;
+    const projectsToShow: RequestData[] = filteredProjects.slice(startIdx, endIdx);
+
+    const totalProjects: number = filteredProjects.length;
+    const totalPages: number = Math.ceil(totalProjects / itemsPerPage);
+
+    res.render('index', {
+      projs: projectsToShow,
+      pageTitle: 'Home',
+      path: '/',
+      isAuthenticate: req.session.user?.login,
+      userid: req.session.user?._id,
+      isadmin: req.session.user?.isadmin,
+      currentPage: currentPage,
+      totalPages: totalPages,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
+};
+
   export const projectcontrol = {
     getindex,
     getTerms,
@@ -530,5 +570,6 @@ export interface RequestData {
     getProject_edit,
     postaddproject,
     deleteProject,
-    updateproject
+    updateproject,
+    getSinglePage
   };

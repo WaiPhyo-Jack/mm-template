@@ -9,19 +9,19 @@
 		<div id="content" class="site-content">
 			<div id="primary" class="content-area column full">
 				<main id="main" class="site-main">
+					
 					<% let currentPage = 1; %>
-					<% let itemsPerPage = 3; %>
-					
-					<% let startIdx = (currentPage - 1) * itemsPerPage; %>
-					<% let endIdx = startIdx + itemsPerPage; %>
-					
+					<% let itemsPerPage = 6; %>
+								
 					<% let filteredProjects = projs.filter(project => !project.price > 0); %>
 					<% let totalProjects = filteredProjects.length; %>
-					<% let totalPages = Math.ceil(totalProjects / itemsPerPage); %>
-					
-					<% let projectsToShow = filteredProjects.slice(startIdx, endIdx); %>
-					
+					<% let totalPages = Math.ceil(totalProjects / itemsPerPage); %>		
+
 					<% if (totalProjects > 0) { %>
+						<% let startIdx = (currentPage - 1) * itemsPerPage; %>
+						<% let endIdx = startIdx + itemsPerPage; %>
+						<% let projectsToShow = filteredProjects.slice(startIdx, endIdx); %>
+						<h1>first<%=currentPage %>,<%=startIdx %>,<%=endIdx %>,<%=totalProjects %></h1>
 					  <div class="grid portfoliogrid">
 						<% for (let project of projectsToShow) { %>
 						  <article class="hentry">
@@ -49,7 +49,7 @@
 						<% } %>
 					  
 						<% if (currentPage < totalPages) { %>
-						  <a class="next page-numbers" href="<%= currentPage + 1 %>">Next »</a>
+						  <a class="next page-numbers" href="?<%= currentPage = currentPage + 1 %>">Next »</a>
 						<% } %>
 					  </nav>
 				<% } else { %>
